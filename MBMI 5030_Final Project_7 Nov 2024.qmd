@@ -1,0 +1,266 @@
+---
+title: "MBMI 5030_Final Project"
+author: "Evan"
+format: html
+editor: visual
+---
+
+## Quarto
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+library(tidyverse)
+library("naniar")
+library("mice")
+library("factoextra")
+```
+
+[**WHAT WE ARE TRYING TO PROVE**]{.underline}
+
+-   Clinical utility (diagnostic, prognostic value) of TMRPSS2-ERG fusion
+
+[**Overview and Narrative**]{.underline}
+
+-   Prostate cancer (PCa) is complex disease that affects millions of men globally. In the US, approximately 1 out of 9 men will develop PCa.
+
+-   The median age at time of diagnosis is 66 years, while median age at time of death is 80 years of age. Studies indicate that age adjusted incidence is decreasing, though the percent of men diagnosed with metastatic disease has increased since 2000 (\~4% 🡪 8%)
+
+-   A cross-functional team, commonly led by a urologist, will conduct blood and imaging tests to establish confirmatory diagnosis and determine need for oncologist support
+
+-   **PSA testing** plays a significant in PCa diagnosis and management, but multiple recent changes to US guidelines have resulted in non-uniform PSA use across practice settings 
+
+    -   PSA testing is a serum-based test measuring the level of protein-specific antigen (PSA) produced by prostate epithelial cells
+
+    -   Elevated levels of PSA have been shown to precede clinical disease by \~5-10+ years, but can also be associated with benign conditions 
+
+-   The effectiveness of PSA as a screening method for prostate cancer is widely debated, with multiple changes to guidelines in the recent past
+
+<!-- -->
+
+-   Before 2008, PSA testing was recommended for all men over 50. 
+
+    -   Studies demonstrated that \~50 men had to be treated to save one life. This burden of treatment was seen as unnecessarily high, so routine PSA testing was no longer recommended
+
+    -   With less PSA testing, diagnosis of metastatic disease became more common
+
+    -   Recommendations were revisited in 2017
+
+    -   Today, men with high risk factors such as BRCA mutated, black men, or those with immediate family histories discuss screening at age 40 – 45 
+
+<!-- -->
+
+-   The Gleason Score is a pathological grading system used to determine prognosis and to help determine the optimal treatment approach
+
+    -   The higher the **Gleason Score** (GS), the more abnormal the tissue and more likely the cancer will grow quickly. GS is utilized as a prognostic tool to determine the aggressiveness of a patient’s cancer and overall prognosis
+
+    -   GS is also used in conjunction with clinical stage, serum PSA, and tumor volume to help determine treatment for newly diagnosed patients
+
+    -   Gleason score is calculated by rating differentiation amongst the 2 most prevalent tumor patterns on a 1-5 scale, and then summing to find a total composite score out of 10
+
+    -   A Gleason Score of 2 – 6 is considered low risk, 7 is considered intermediate risk, and 8 – 10 is considered high risk
+
+<!-- -->
+
+-   The phrase **aggressive disease** is commonly referenced in the mCRPC setting, though the term is ambiguously defined and often varies amongst healthcare practitioners. 
+
+    -   Physicians rely on a blend of commonly observed patient characteristics to identify aggressive disease. Aggressive disease is associated with the need for systemic therapy
+
+<!-- -->
+
+-   The ability to better identify and predict aggressive disease is likely to yield improved outcomes. 
+
+    -   In this analysis I will examine the significance of TMRPSS2-ERG fusion in prostate cancer and determine whether there is correlation with aggressive disease
+
+[**ANALYSIS OF DATA**]{.underline}
+
+**Objective:** Evaluate the significance of TMRPSS2-ERG fusion in prostate cancer. 
+
+-   Significance is defined as presence of TMRPSS2-ERG fusion and correlation with more aggressive disease and/or disease that is more likely to reoccur. 
+
+-   Aggressive disease and/or disease that is more likely to reoccur will be identified via quantitative analysis of known diagnostic and prognostic markers found in the dataset
+
+-   **GOAL**: Assess whether presence of TMRPSS2-ERG fusion is likely to inform clinical care.
+
+<!-- -->
+
+-   **Overview of basic patient demographics**
+
+    -   Distribution of patients by age
+
+    -   Distribution patients by tumor stage 
+
+    -   Distribution patients by mutation count 
+
+    -   Distribution of patients with TMRPSS2-ERG fusion – broken out by 3 options 
+
+    -   ***Visualization / exploratory analysis***
+
+<!-- -->
+
+-   **Define Aggressive Disease**
+
+    -   Provide qualitative definitions for each score + explain how it is used clinically 
+
+        -   Gleason (Direct correlation with aggression, higher score = more agg)
+
+        -   PSA (more so indicates likelihood of disease, neutral agg)
+
+        -   TMB (more TMB = more aggressive disease)
+
+        -   FGA (higher score = more agg and prognostic for tx response)
+
+        -   Capra Score (predicts likelihood of disease recurrence)
+
+    -   **\^ MODEL(S):**
+
+        -   ***Principal Component Analysis – Gleason, TMB, and FGA to make composite measure?***
+
+        -   ***Could perform sensitivity analysis on PCA***
+
+        -   ***Cross validation OR bootstrapping to assess PCA consistency***
+
+-   ***\*\*\* PERFORM SUB ANALYSIS on Older vs. Younger Patients***
+
+    -   Where does this belong?
+
+    **Dive into TMRPSS2-ERG fusion status**
+
+<!-- -->
+
+-   Use TMRPSS2-ERG fusion status to predict aggressiveness of disease 1 
+
+    -   Variation among: Negative, Positive with interstitial deletion, Positive, NA?
+
+    -   Is there a correlation between presence of TMRPSS2-ERG and patient age?
+
+    -   Is there a correlation between presence of TMRPSS2-ERG and tumor stage?
+
+    -   Is there a correlation between presence of TMRPSS2-ERG and \# of mutations**?**
+
+<!-- -->
+
+-   **\^ MODEL(S):**
+
+    -   ***Start with Linear Regression (default starting point)***
+
+    -   ***LASSO***
+
+    -   ***RIDGE***
+
+    -   ***Random Forest***
+
+-   **KEY Insight:** How do we deal with contradictory variables? 
+
+    -   E.g., Low Gleason, but high PSA and Fraction Genome Altered scores?
+
+        -   ***Can go back into describing variable importance (PCA results)***
+
+        -   Can think through (qualitatively) how this might impact contradictory score and layer in what we know a
+
+```{r}
+library("table1")
+Clinical=read_tsv("prad_broad_clinical_data (2).tsv", name_repair = "universal_quiet")
+Clinical = Clinical |>
+  rename(Age = Diagnosis.Age, 
+         FGA.Status = Fraction.Genome.Altered,
+         Prostatectomy.Gleason.Score = Radical.Prostatectomy.Gleason.Score.for.Prostate.Cancer,
+         Capra.Score = Modified.Capra.S.Score.Without.Including.Surgical.Margins,
+         PSA.Status = Serum.PSA,
+         Tumor.Mutation.Burden = TMB..nonsynonymous.)
+```
+
+```{r}
+## Assess Missingness
+vis_miss(Clinical)
+
+Clinical = Clinical |>
+  drop_na(Age)
+
+vis_miss(Clinical)
+
+## Going to impute FGA where we have some missingness 
+## Installed MICE Library
+
+Clinical.mids = mice(Clinical)
+Clinical = complete(Clinical.mids) ## Gives clinical dataframe with 112 obs & 0 missing
+```
+
+```{r}
+Clinical = Clinical |>
+  mutate(Tumor.Stage.Binary=str_sub(Tumor.Stage,1,3)) |>
+  rowwise() |>
+  mutate(Composite.Gleason.Score = eval(parse(text=Prostatectomy.Gleason.Score)))
+```
+
+```{r}
+##Overview of basic patient demographics 
+##Distribution of patients by age
+##Distribution patients by tumor stage 
+##Distribution patients by mutation count 
+##Distribution of patients with TMRPSS2-ERG fusion – broken out by 3 options 
+##Visualization / exploratory analysis
+
+ggplot(Clinical,aes(x=Age, fill=Tumor.Stage.Binary)) + 
+  geom_histogram(position = "dodge")
+table(Clinical$Tumor.Stage)
+
+## Density Curve
+ggplot(Clinical,aes(x=Age, color=Tumor.Stage.Binary)) + 
+  geom_density()
+```
+
+```{r}
+library("GGally")
+
+##Define Aggressive Disease 
+
+##Provide qualitative definitions for each score + explain how it is used clinically 
+## (more TMB = more aggressive disease)
+##FGA (higher score = more agg and prognostic for tx response)
+
+##^ MODEL(S): 
+  ##Principal Component Analysis – Gleason, TMB, and FGA to make composite measure?
+  ##Could perform sensitivity analysis on PCA 
+  ##Cross validation OR bootstrapping to assess PCA consistency
+
+## Exclude individual with outlier TMB Count
+Clinical = Clinical |>
+  filter(Tumor.Mutation.Burden<=3) |>
+  mutate(Log.FGA.Status=log(FGA.Status)) ## New FGA Col with imputed columns
+
+## Pairwise plots - of three variables of interest
+ggpairs(Clinical,columns=c("Composite.Gleason.Score","FGA.Status","Tumor.Mutation.Burden"))
+```
+
+```{r}
+## New FGA Col with imputed columns
+
+ggpairs(Clinical,columns=c("Composite.Gleason.Score","Log.FGA.Status","Tumor.Mutation.Burden"))
+```
+
+```{r}
+PCA_Results=prcomp(~Composite.Gleason.Score + Log.FGA.Status + Tumor.Mutation.Burden,
+       data = Clinical,
+       scale.=TRUE)
+PCA_Results
+
+##Shows how PCA relates to different variables
+fviz_pca_var(PCA_Results)
+
+## How to Interpret
+## Shows how dimensions relate to original variables
+## Horiz / Vert axis show loading coeff
+```
+
+```{r}
+## Bootstrapping -- Start with PCA Function
+## Computing P Components 
+Get_Principal_Component_One=function(data){
+ PCA_Results=prcomp(~Composite.Gleason.Score + Log.FGA.Status + Tumor.Mutation.Burden,
+       data = Clinical,
+       scale.=TRUE)
+PCA_Results$x[,1]
+ }
+## Get all prin components and then review spread in values of components 
+```
