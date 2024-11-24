@@ -1,19 +1,11 @@
 # BMIN503/EPID600 Final Project
 
-This repository contains templates for the final written report and GitHub repository. Follow the instructions below to clone this repository, and then turn in your final project's code via a pull request to this repository.
+Objective: Evaluate the significance of TMRPSS2-ERG fusion in prostate cancer. 
+•	  Significance is defined as presence of TMRPSS2-ERG fusion and correlation with more aggressive disease and/or disease that is more likely to reoccur. 
+•	  Aggressive disease and/or disease that is more likely to reoccur will be identified via quantitative analysis of known diagnostic and prognostic markers found in the dataset
+•	  GOAL: Assess whether presence of TMRPSS2-ERG fusion is likely to inform clinical care.
 
-1. To start, **fork** this BMIN503_Final_Project repository.
-1. **Clone** the forked repository to your computer.
-1. Modify the files provided, add your own, and **commit** changes to complete your final project.
-1. **Push**/sync the changes up to your GitHub account.
-1. Create a **pull request** on this, the original BMIN503_Final_Project, repository to turn in your final project.
-
-
-Follow the instructions [here][forking] if you are unsure what the above steps mean.
-
-DUE DATE FOR FINAL VERSION: 12/13/24 11:59PM. This is a hard deadline. Turn in whatever you have by this date.
-
-
-<!-- Links -->
-[forking]: https://guides.github.com/activities/forking/
-
+Have pulled in a dataset from the BROAD Institute and access dataset via CBioPortal
+•	  Analyzed N=112 patient samples https://www.cbioportal.org/study/clinicalData?id=prad_broad
+•	  Used PCA, Bootstrapping, Linear Model, Random Forest, Lasso preferred predictors
+•	  Hypothesis that TMRPSS2 can be used to predict aggressivness of disease was proven false
