@@ -2,6 +2,7 @@
 title: "Determining the Utility of TMPRSS2-ERG Fusion Status for Prediction of Disease Aggressiveness"
 author: "Evan Saitsky"
 format: html
+embed-resources: true
 editor: visual
 ---
 
