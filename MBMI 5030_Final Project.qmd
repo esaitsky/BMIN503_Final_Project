@@ -608,3 +608,35 @@ Model accuracy was primarily ascertained using two key metrics – Root mean squ
 **Limitations**
 
 Despite being deemed sufficient for the purposes of this project, the sample size included in our analysis (n = 112) is modest. This likely led to a degree of reduced statistical power, increased bias risk, and lower generalizability. Furthermore, the dataset was curated in 2012. The key metrics still hold utility for prostate cancer screening, diagnosis, and prognosis, however we now likely have a more nuanced understanding of the disease (from 12 years ago) and there might be more impactful variables that we could have used to generate the compositive score and/or include in our analysis. Finally, I believe that greater longitudinal visibility into the patient journey might have unlocked new insights regarding treatment decision, impact of therapeutic pressure, and ultimately how this linked back to aggressiveness of disease. The current sample appears somewhat heterogeneous in terms of disease state and decision to evaluate post-prostatectomy.
+
+# References 
+
+-   American Cancer Society. Prostate cancer causes, risk factors, and prevention. Accessed October, 2024. <https://www.cancer.org/cancer/types/prostate-cancer/causes-risks-prevention.html>
+
+-   Broad Institute. Prostate adenocarcinoma (Broad, 2013). cBioPortal. Accessed October, 2024. <https://www.cbioportal.org/study/clinicalData?id=prad_broad>
+
+-   Broad Institute. Prostate adenocarcinoma (Broad, 2013). cBioPortal. Accessed October, 2024. <https://www.cbioportal.org/study/summary?id=prad_broad>
+
+-   Cuzick J, Thorat MA, Andriole G, et al. Prevention and early detection of prostate cancer. Lancet Oncol. 2014;15(11):e484-e492. doi:10.1016/S1470-2045(14)70211-6
+
+-   Hamdy FC, Donovan JL, Lane JA, et al. 10-Year outcomes after monitoring, surgery, or radiotherapy for localized prostate cancer. N Engl J Med. 2016;375(15):1415-1424. doi:10.1056/NEJMoa1606221
+
+-   Litwin MS, Tan HJ. The diagnosis and treatment of prostate cancer: a review. Nat Rev Dis Primers. 2020;6(1):87. doi:10.1038/s41572-020-00243-0
+
+-   Nakabayashi M, Sartor O. Immunotherapy for prostate cancer: recent progress and future prospects. Curr Opin Urol. 2015;25(5):549-556. doi:10.1097/MOU.0000000000000196
+
+-   Paller CJ, Antonarakis ES. Management of biochemically recurrent prostate cancer after local therapy: evolving standards of care and new directions. Clin Adv Hematol Oncol. 2019;17(4):220-230.
+
+-   Roswell Park Comprehensive Cancer Center. What are the treatment options for aggressive prostate cancer? Accessed November, 2024. <https://www.roswellpark.org/cancertalk/202010/what-are-treatment-options-aggressive-prostate-cancer>
+
+-   Sanda MG, Chen RC, Crispino T, et al. Patient-Reported Outcomes After Monitoring, Surgery, or Radiotherapy for Prostate Cancer. N Engl J Med. 2017;375(15):1415-1424. doi:10.1056/NEJMsr1807462
+
+-   Sweeney CJ, Chen YH, Carducci M, et al. Chemohormonal therapy in metastatic hormone-sensitive prostate cancer. N Engl J Med. 2015;373(8):737-746. doi:10.1056/NEJMoa1503747
+
+-   Tangen CM, Hussain MH, Higano CS, et al. Improved overall survival with enzalutamide in men with castration-resistant prostate cancer. Lancet Oncol. 2012;13(10):983-992. doi:10.1016/S1470-2045(12)70300-9
+
+-   UroToday. ASCO 2019: HSD3B1 and OS in men with low-volume metastatic prostate cancer treated with ADT or chemohormonal therapy in the CHAARTED randomized trial. Accessed November, 2024. <https://www.urotoday.com/conference-highlights/asco-2019-annual-meeting/asco-2019-prostate-cancer/113075-asco-2019-hsd3b1-and-os-in-men-with-low-volume-metastatic-prostate-cancer-treated-with-adt-or-chemohormonal-therapy-in-the-chaarted-randomized-trial.html>
+
+-   Van Hemelrijck M, Garmo H, Holmberg L, et al. Endocrine treatment, serum testosterone levels, and mortality in men with locally advanced and metastatic prostate cancer: a nationwide population-based study. J Clin Oncol. 2015;33(3):266-275. doi:10.1200/JCO.2014.56.1415
+
+-   Vlachostergios PJ, Puca L, Beltran H. Emerging Variants of Neuroendocrine Prostate Cancer: Therapeutic Implications. Curr Oncol Rep. 2020;22(8):74. doi:10.1007/s11912-020-00943-5
